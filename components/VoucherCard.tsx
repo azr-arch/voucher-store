@@ -1,7 +1,7 @@
 "use client";
 
 // import Image from "next/image";
-// import { useCart } from "../contexts/CartContext";
+import { useCart } from "../contexts/CartContext";
 import { ChevronRight } from "lucide-react";
 
 interface Voucher {
@@ -15,7 +15,7 @@ interface Voucher {
 }
 
 export default function VoucherCard({ voucher }: { voucher: Voucher }) {
-    // const { addToCart } = useCart();
+    const { addToCart } = useCart();
 
     // const handleAddToCart = () => {
     //     addToCart({
@@ -35,7 +35,7 @@ export default function VoucherCard({ voucher }: { voucher: Voucher }) {
             //   transition: { duration: 0.2 },
             // }}
             className="relative"
-            // onClick={() => setSelectedVoucher(voucher)}
+            onClick={() => addToCart(voucher)}
         >
             <div
                 className={`relative  bg-gradient-to-br ${voucher.color} p-[1px] cursor-pointer`}

@@ -11,7 +11,8 @@ export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
 
     const { cart } = useCart();
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    // const totalItems = cart.reduce((sum, item)  , 0);
+    const totalItems = cart.length;
 
     const closeCart = () => {
         setIsOpen(false);
