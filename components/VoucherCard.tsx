@@ -4,7 +4,7 @@
 import { useCart } from "../contexts/CartContext";
 import { ChevronRight } from "lucide-react";
 
-interface Voucher {
+export interface IVoucher {
     id: string;
     brand: string;
     offer: string;
@@ -14,7 +14,7 @@ interface Voucher {
     color: string;
 }
 
-export default function VoucherCard({ voucher }: { voucher: Voucher }) {
+export default function VoucherCard({ voucher }: { voucher: IVoucher }) {
     const { addToCart } = useCart();
 
     // const handleAddToCart = () => {
