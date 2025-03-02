@@ -1,12 +1,12 @@
 "use client";
 
 import { ArrowLeft, Clock, Tag } from "lucide-react";
-import { Button } from "./ui/button";
 import Image from "next/image";
 import { IVoucher } from "./VoucherCard";
 import { useCart } from "@/contexts/CartContext";
 import { useTransition } from "react";
 import Link from "next/link";
+import { ClaimModal } from "./modal/claim-modal";
 
 export const VoucherDetail = ({ voucher }: { voucher: IVoucher }) => {
     const [, startTransition] = useTransition();
@@ -75,12 +75,13 @@ export const VoucherDetail = ({ voucher }: { voucher: IVoucher }) => {
                     </div>
 
                     {/* <div className="flex items-center justify-end"> */}
-                    <Button
+                    {/* <Button
                         onClick={() => handleBuyNow(voucher)}
                         className="block ml-auto rounded-[5px] bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 flex-1 text-white"
                     >
                         Buy now
-                    </Button>
+                    </Button> */}
+                    <ClaimModal />
                     {/* </div> */}
                 </div>
             </div>
