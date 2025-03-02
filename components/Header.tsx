@@ -3,23 +3,18 @@
 import { ShoppingBag } from "lucide-react";
 import { useCart } from "../contexts/CartContext";
 import { Cart } from "./cart";
-import { useState } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
-    const [isOpen, setIsOpen] = useState(false);
+    const { cart, cartIsOpen, closeCart, openCart } = useCart();
 
-    const { cart } = useCart();
     // const totalItems = cart.reduce((sum, item)  , 0);
     const totalItems = cart.length;
 
-    const closeCart = () => {
-        setIsOpen(false);
-    };
-
     return (
-        <header className="p-6 flex justify-between items-center bg-gray-800">
+        <header className="px-6 py-3 flex justify-between items-center bg-gray-800 fixed top-0 left-0 z-10 w-full">
             <div className="text-3xl font-bold tracking-tighter flex items-center">
                 <motion.div
                     animate={{ rotate: [0, 360] }}
@@ -37,7 +32,7 @@ export default function Header() {
                 </Link>
             </div>
 
-            <button onClick={() => setIsOpen(true)} className="p-2 relative">
+            <button onClick={openCart} className="p-2 relative">
                 <ShoppingBag className="w-6 h-6" />
                 {totalItems > 0 && (
                     <span className="absolute -top-1 -right-1 bg-white text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
@@ -45,7 +40,7 @@ export default function Header() {
                     </span>
                 )}
             </button>
-            <Cart isOpen={isOpen} onClose={closeCart} />
+            <Cart isOpen={cartIsOpen} onClose={closeCart} />
         </header>
     );
 }

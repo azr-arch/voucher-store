@@ -1,3 +1,4 @@
+import { VoucherDetail } from "@/components/voucher-detail";
 import { voucherData } from "@/lib/utils";
 
 export default function VoucherIdPage({ params }: { params: { voucherId: string } }) {
@@ -10,8 +11,7 @@ export default function VoucherIdPage({ params }: { params: { voucherId: string 
 
     return (
         <div className="w-full h-full ">
-            <h3 className="text-sm text-gray-400 font-medium mb-1">{voucher.brand}</h3>
-            <p className="text-lg  line-clamp-2 h-8">{voucher.offer}</p>
+            <VoucherDetail voucher={voucher} />
         </div>
     );
 }

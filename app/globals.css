@@ -47,6 +47,24 @@ body {
     min-height: 100vh;
 }
 
+/* Hide scrollbars globally */
+*::-webkit-scrollbar {
+    /* display: none; Safari and Chrome */
+    width: 2px;
+    height: 5px;
+    background-color: transparent;
+}
+
+* {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: 2px; /* Firefox */
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 5px;
+    height: 10px;
+}
+
 /* @layer base {
     * {
         @apply border-border outline-ring/50;

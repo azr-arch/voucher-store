@@ -16,14 +16,14 @@ export function Cart({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
 
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
-            <SheetContent className="">
+            <SheetContent>
                 <SheetTitle className="sr-only">Cart</SheetTitle>
-                <div className="flex flex-col h-full">
-                    <div className="flex-1 overflow-auto py-6 px-8">
+                <div className="flex flex-col h-full pt-5">
+                    <div className="flex-1 overflow-auto py-6 md:px-8 ">
                         {cart.map((item) => (
                             <div key={`${item.id}`} className="flex gap-4 py-6 first:pt-0">
-                                <div className="relative aspect-square h-[120px] rounded-sm bg-[#FFFFFF]">
-                                    {/* <Image
+                                {/* <div className="relative aspect-square h-[120px] rounded-sm bg-[#FFFFFF]"> */}
+                                {/* <Image
                     src={item.image}
                     alt={item.name}
                     fill
@@ -31,7 +31,8 @@ export function Cart({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
                     loading="eager"
                     decoding="sync"
                   /> */}
-                                </div>
+                                {/* </div> */}
+                                <div className="w-8 h-8 rounded-[5px] bg-neutral-300 border border-neutral-200"></div>
                                 <div className="flex flex-col justify-between py-1 flex-1 h-full">
                                     <div className="h-full">
                                         <p className=" uppercase text-xs text-neutral-400 font-medium mb-2">
@@ -70,7 +71,7 @@ export function Cart({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
                         ))}
                     </div>
                     <div className="border-t">
-                        <div className="p-8 space-y-4">
+                        <div className="md:p-8 space-y-4 py-4">
                             <div className="flex justify-between items-center">
                                 <p className="font-mono uppercase">Total</p>
                                 <p className="font-mono">${totalPrice}</p>
