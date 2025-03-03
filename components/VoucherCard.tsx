@@ -8,16 +8,6 @@ import { Card } from "./ui/card";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-export interface IVoucher {
-    id: string;
-    brand: string;
-    offer: string;
-    value: number;
-    expiry: string;
-    logo: string;
-    color: string;
-}
-
 export default function VoucherCard({ voucher }: { voucher: IVoucher }) {
     const { addToCart } = useCart();
 

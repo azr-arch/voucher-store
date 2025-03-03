@@ -12,3 +12,33 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Voucher {
+  id                  String     @id @default(uuid())
+  title               String
+  brand               String
+  code                String     @unique
+  redemptionInstruction    String     
+
+  status              Status     @default(AVAILABLE)
+  reservations        Reservation[]
+  @@map("vouchers")
+}
+
+model Reservation {
+  id          String   @id @default(uuid())
+  voucherId   String
+  voucher     Voucher  @relation(fields: [voucherId], references: [id])
+  email       String
+  reservedAt  DateTime @default(now())
+  expiresAt   DateTime
+  returnedAt  DateTime?
+  @@map("reservations")
+}
+
+enum Status {
+  AVAILABLE
+  RESERVED
+  RETURNED
+  EXPIRED
+}

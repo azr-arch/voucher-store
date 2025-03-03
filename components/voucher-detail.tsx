@@ -3,21 +3,21 @@
 import { ArrowLeft, Clock, Tag } from "lucide-react";
 import Image from "next/image";
 import { IVoucher } from "./VoucherCard";
-import { useCart } from "@/contexts/CartContext";
-import { useTransition } from "react";
+// import { useCart } from "@/contexts/CartContext";
+// import { useTransition } from "react";
 import Link from "next/link";
 import { ClaimModal } from "./modal/claim-modal";
 
 export const VoucherDetail = ({ voucher }: { voucher: IVoucher }) => {
-    const [, startTransition] = useTransition();
-    const { addToCart, openCart } = useCart();
+    // const [, startTransition] = useTransition();
+    // const { addToCart, openCart } = useCart();
 
-    const handleBuyNow = (voucher: IVoucher) => {
-        startTransition(() => {
-            addToCart(voucher);
-            openCart();
-        });
-    };
+    // const handleBuyNow = (voucher: IVoucher) => {
+    //     startTransition(() => {
+    //         addToCart(voucher);
+    //         openCart();
+    //     });
+    // };
     return (
         <div className="max-w-screen-lg mx-auto py-1">
             <Link
