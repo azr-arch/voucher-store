@@ -2,8 +2,8 @@
 
 // import Image from "next/image";
 // import { useCart } from "../contexts/CartContext";
-import { Clock, Plus, Tag } from "lucide-react";
-import { Button } from "./ui/button";
+import { Clock } from "lucide-react";
+// import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -38,37 +38,11 @@ export default function VoucherCard({ voucher }: { voucher: VoucherWithoutCode }
                     </div>
 
                     <h3 className="text-sm text-gray-400 font-semibold mb-1">{voucher.brand}</h3>
-                    <p className=" mb-3 line-clamp-1">{voucher.title}</p>
+                    <p className=" mb-3 line-clamp-2">{voucher.title}</p>
                 </div>
             </Link>
 
-            <div className="h-px w-full bg-gray-700 mt-5 mb-2" />
-            <div className="flex justify-between items-center px-5 pb-3">
-                <div className="flex items-center text-purple-400">
-                    <Tag className="w-4 h-4 mr-1" />
-                    <span>$50</span>
-                </div>
-
-                <div className="space-x-2">
-                    {/* <Link
-                            // variant="ghost"
-                            href={`voucher/${voucher.id}`}
-                            // size="sm"
-                            className="text-gray-400 hover:text-white hover:bg-gray-800 transition-colors inline-flex p-2.5"
-                        >
-                            <ArrowUpRight className="w-4 h-4" />
-                        </Link> */}
-                    <Button
-                        // onClick={() => {
-                        //     addToCart(voucher);
-                        // }}
-                        variant={"ghost"}
-                        size={"icon"}
-                    >
-                        <Plus className="w-4 h-4" />
-                    </Button>
-                </div>
-            </div>
+            {/* <div className="h-px w-full bg-gray-700 mt-5 mb-2" /> */}
         </Card>
     );
 }

@@ -1,28 +1,8 @@
-import { Suspense } from "react";
 import VoucherList from "../../components/VoucherList";
-import { prismaDb } from "@/lib/db";
+import { getAllVouchers } from "@/lib/queries";
 
-export default function Home() {
-    const voucherPromise = prismaDb.voucher.findMany({
-        where: {
-            status: {
-                not: "EXPIRED",
-            },
-        },
-        select: {
-            id: true,
-            title: true,
-            brand: true,
-            brandLogo: true,
-            expiryDate: true,
-            details: true,
-            howtoredeem: true,
-        },
-    });
+export default async function Home() {
+    const vouchers = await getAllVouchers();
 
-    return (
-        <Suspense fallback={<p>Loading...</p>}>
-            <VoucherList voucherPromise={voucherPromise} />
-        </Suspense>
-    );
+    return <VoucherList vouchers={vouchers} />;
 }

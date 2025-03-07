@@ -14,8 +14,8 @@ import {
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { CheckCircle, Loader2, XCircle } from "lucide-react";
-import { validateAction } from "@/actions/send-email";
-import { IVoucher } from "../VoucherCard";
+// import { validateAction } from "@/actions/send-email";
+// import { IVoucher } from "../VoucherCard";
 
 type ActionState = {
     error?: string;
@@ -33,6 +33,8 @@ export const ClaimModal = () => {
     const [state, formAction, isPending] = useActionState<ActionState, FormData>(
         (state: ActionState, formData: FormData) => {
             //  complete this with zdo validation
+            console.log({ state, formData });
+            return {};
         },
         {
             error: "",

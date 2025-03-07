@@ -13,7 +13,7 @@ export default function Header() {
     // const totalItems = cart.length;
 
     return (
-        <header className=" px-6 py-3  bg-gray-800 fixed top-0 left-0 z-10 w-full">
+        <header className=" px-6 py-3  bg-gray-800  w-full">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="text-3xl font-bold tracking-tighter flex items-center">
                     <motion.div
