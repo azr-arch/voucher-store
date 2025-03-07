@@ -1,24 +1,13 @@
 import { VoucherDetail } from "@/components/voucher-detail";
-import { prismaDb } from "@/lib/db";
+import { getVoucherById } from "@/lib/queries";
 import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
 
-export default function VoucherIdPage({ params }: { params: { voucherId: string } }) {
-    // const voucher = voucherData.find((item) => item.id === params.voucherId);
-    const voucherPromise = prismaDb.voucher.findUnique({
-        where: {
-            id: params.voucherId,
-        },
-        select: {
-            id: true,
-            title: true,
-            brand: true,
-            brandLogo: true,
-            expiryDate: true,
-            details: true,
-            howtoredeem: true,
-        },
-    });
+type tParams = Promise<{ voucherId: string }>;
+
+export default async function VoucherIdPage(props: { params: tParams }) {
+    const { voucherId } = await props.params;
+    const voucherPromise = getVoucherById({ voucherId });
 
     return (
         <div className="w-full h-full ">

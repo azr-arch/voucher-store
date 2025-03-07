@@ -8,12 +8,11 @@ import Link from "next/link";
 import { ClaimModal } from "./modal/claim-modal";
 import { VoucherWithoutCode } from "@/lib/types";
 import { use } from "react";
-import { PrismaPromise } from "@prisma/client";
 
 export const VoucherDetail = ({
     voucherPromise,
 }: {
-    voucherPromise: PrismaPromise<VoucherWithoutCode | null>;
+    voucherPromise: Promise<VoucherWithoutCode | null>;
 }) => {
     // const [, startTransition] = useTransition();
     // const { addToCart, openCart } = useCart();
