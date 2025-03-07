@@ -1,6 +1,16 @@
-import { voucherData } from "@/lib/utils";
+"use client";
+
+import { use } from "react";
 import VoucherCard from "./VoucherCard";
-export default function VoucherList() {
+import { VoucherWithoutCode } from "@/lib/types";
+
+export default function VoucherList({
+    voucherPromise,
+}: {
+    voucherPromise: Promise<VoucherWithoutCode[]>;
+}) {
+    const voucherData = use(voucherPromise);
+
     return (
         <>
             <h2 className="text-3xl font-bold mb-2">Available Vouchers</h2>
@@ -13,6 +23,7 @@ export default function VoucherList() {
             >
                 Select a voucher to view details
             </p>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  place-content-center">
                 {voucherData.map((voucher) => (
                     <VoucherCard key={voucher.id} voucher={voucher} />

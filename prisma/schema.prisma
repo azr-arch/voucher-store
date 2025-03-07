@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "cockroachdb"
   url      = env("DATABASE_URL")
 }
 
@@ -17,10 +17,14 @@ model Voucher {
   id                  String     @id @default(uuid())
   title               String
   brand               String
+  brandLogo           String?    @default("https://placehold.co/40")
   code                String     @unique
-  redemptionInstruction    String     
+  howtoredeem         Json
+  details             Json      
+
 
   status              Status     @default(AVAILABLE)
+  expiryDate          DateTime    
   reservations        Reservation[]
   @@map("vouchers")
 }
@@ -36,9 +40,14 @@ model Reservation {
   @@map("reservations")
 }
 
+model User {
+  id          String   @id @default(uuid())
+  email       String  @unique
+  lastVoucherTime DateTime
+}
+
 enum Status {
   AVAILABLE
   RESERVED
-  RETURNED
   EXPIRED
 }

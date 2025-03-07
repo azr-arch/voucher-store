@@ -1,16 +1,16 @@
 "use client";
 
-import { ShoppingBag } from "lucide-react";
-import { useCart } from "../contexts/CartContext";
-import { Cart } from "./cart";
+// import { ShoppingBag } from "lucide-react";
+// import { useCart } from "../contexts/CartContext";
+// import { Cart } from "./cart";
 import { motion } from "motion/react";
 import Link from "next/link";
 
 export default function Header() {
-    const { cart, cartIsOpen, closeCart, openCart } = useCart();
+    // const { cart,  } = useCart();
 
     // const totalItems = cart.reduce((sum, item)  , 0);
-    const totalItems = cart.length;
+    // const totalItems = cart.length;
 
     return (
         <header className=" px-6 py-3  bg-gray-800 fixed top-0 left-0 z-10 w-full">
@@ -31,7 +31,7 @@ export default function Header() {
                         VOUCHER
                     </Link>
                 </div>
-
+                {/* 
                 <button onClick={openCart} className="p-2 relative">
                     <ShoppingBag className="w-6 h-6" />
                     {totalItems > 0 && (
@@ -39,8 +39,8 @@ export default function Header() {
                             {totalItems}
                         </span>
                     )}
-                </button>
-                <Cart isOpen={cartIsOpen} onClose={closeCart} />
+                </button> */}
+                {/* <Cart isOpen={cartIsOpen} onClose={closeCart} /> */}
             </div>
         </header>
     );
