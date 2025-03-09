@@ -2,8 +2,6 @@
 
 import { ArrowLeft, Clock, MinusIcon } from "lucide-react";
 import Image from "next/image";
-// import { useCart } from "@/contexts/CartContext";
-// import { useTransition } from "react";
 import Link from "next/link";
 import { ClaimModal } from "./modal/claim-modal";
 import { VoucherWithoutCode } from "@/lib/types";
@@ -94,7 +92,7 @@ export const VoucherDetail = ({
                     >
                         Buy now
                     </Button> */}
-                            <ClaimModal />
+                            <ClaimModal voucherId={voucher.id} />
                             {/* </div> */}
                         </div>
                     </div>

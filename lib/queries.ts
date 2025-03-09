@@ -18,7 +18,8 @@ export const getAllVouchers = async () => {
                 howtoredeem: true,
             },
         });
-    } catch {
+    } catch (err) {
+        console.log({ err });
         return [];
     }
 };
