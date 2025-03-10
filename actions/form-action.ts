@@ -4,7 +4,7 @@ import { ActionState } from "@/components/modal/claim-modal";
 import { prismaDb } from "@/lib/db";
 import { sendVoucherEmail } from "@/lib/email";
 
-const nameRegex = /^a-zA-Z][a-zA-Zs]{0,10}[a-zA-Z]$/;
+const nameRegex = /^[a-zA-Z\s]{4,20}$/;
 
 export const formSubmit = async (state: ActionState, formData: FormData) => {
     // Maybe use zod for validation
@@ -19,19 +19,25 @@ export const formSubmit = async (state: ActionState, formData: FormData) => {
 
     if (!validName) {
         return {
-            error: "Name must be alphabetic, include spaces, and be exactly 22 characters long.",
+            error: "Invalid name. Must be 4-20 alphabetic characters (including spaces)",
+            name,
+            email,
         };
     }
 
     if (!email || !name || !voucherid) {
         return {
             error: "Please fill all the fields",
+            name,
+            email,
         };
     }
 
     if (!checkbox || checkbox === "off") {
         return {
             error: "Please accept above condition to move forward",
+            name,
+            email,
         };
     }
 
@@ -52,30 +58,39 @@ export const formSubmit = async (state: ActionState, formData: FormData) => {
         }
 
         // Send the voucher to the user
-        const data = await sendVoucherEmail({
+        await sendVoucherEmail({
             userEmail: email,
             userName: name,
             voucher: voucherToSend,
         });
 
-        if (!data) {
-            return {
-                error: "Something went wrong, try again later.",
-            };
-        }
+        await Promise.allSettled([
+            // Mark the vouhcer as expired
+            await prismaDb.voucher.update({
+                where: {
+                    id: voucherToSend.id,
+                },
+                data: {
+                    status: "RESERVED",
+                },
+            }),
 
-        // create a reservation
-        await prismaDb.reservation.create({
-            data: {
-                voucherId: voucherToSend.id,
-                email,
-            },
-        });
+            // create a reservation
+            await prismaDb.reservation.create({
+                data: {
+                    voucherId: voucherToSend.id,
+                    email,
+                },
+            }),
+        ]);
 
         return {
             success: "Sent! please check your email",
         };
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
+        console.log({ error });
         return {
             error: error?.message ?? "Server is down, please try again later",
         };

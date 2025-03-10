@@ -28,8 +28,6 @@ export const ClaimModal = ({ voucherId }: { voucherId: string }) => {
         error: "",
     });
 
-    console.log("aza");
-
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -55,6 +53,7 @@ export const ClaimModal = ({ voucherId }: { voucherId: string }) => {
                             name="name"
                             placeholder="Enter your full name"
                             required
+                            defaultValue={state.name}
                         />
                     </div>
                     <div className="space-y-1">
@@ -66,6 +65,7 @@ export const ClaimModal = ({ voucherId }: { voucherId: string }) => {
                             name="email"
                             placeholder="Enter your email address"
                             required
+                            defaultValue={state.email}
                         />
                     </div>
                     <div>
@@ -94,10 +94,10 @@ export const ClaimModal = ({ voucherId }: { voucherId: string }) => {
                         {/* <Button variant={"outline"} type="submit">
                         Cancel
                         </Button> */}
-                        <Button type="submit">
+                        <Button disabled={isPending} type="submit">
                             {isPending ? (
                                 <>
-                                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                                    <Loader2 className="w-4 h-4 animate-spin mr-0.5" />
                                     Sending...
                                 </>
                             ) : (

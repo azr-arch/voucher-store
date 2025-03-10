@@ -2,7 +2,7 @@ import { prismaDb } from "@/lib/db";
 
 export const getAllVouchers = async () => {
     try {
-        return await prismaDb.voucher.findMany({
+        const vouchers = await prismaDb.voucher.findMany({
             where: {
                 status: {
                     not: "EXPIRED",
@@ -18,6 +18,8 @@ export const getAllVouchers = async () => {
                 howtoredeem: true,
             },
         });
+
+        return vouchers;
     } catch (err) {
         console.log({ err });
         return [];
