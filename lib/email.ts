@@ -36,7 +36,7 @@ export async function sendVoucherEmail({
             service: "gmail",
             auth: {
                 type: "OAuth2",
-                user: "dummyaccc023@gmail.com",
+                user: SENDER_EMAIL || "dummyaccc023@gmai.com",
                 clientId: CLIENT_ID,
                 clientSecret: CLIENT_SECRET,
                 refreshToken: REFRESH_TOKEN,
