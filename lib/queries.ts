@@ -5,7 +5,7 @@ export const getAllVouchers = async () => {
         const vouchers = await prismaDb.voucher.findMany({
             where: {
                 status: {
-                    not: "EXPIRED",
+                    notIn: ["EXPIRED", "RESERVED"],
                 },
             },
             select: {
