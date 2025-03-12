@@ -30,13 +30,11 @@ export async function sendVoucherEmail({
     try {
         const accessToken = await oAuth2Client.getAccessToken();
 
-        console.log({ accessToken });
-
         const transport = nodemailer.createTransport({
             service: "gmail",
             auth: {
                 type: "OAuth2",
-                user: SENDER_EMAIL || "dummyaccc023@gmai.com",
+                user: "dummyaccc023@gmai.com" || SENDER_EMAIL,
                 clientId: CLIENT_ID,
                 clientSecret: CLIENT_SECRET,
                 refreshToken: REFRESH_TOKEN,
