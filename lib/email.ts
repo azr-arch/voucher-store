@@ -34,7 +34,8 @@ export async function sendVoucherEmail({
             service: "gmail",
             auth: {
                 type: "OAuth2",
-                user: "dummyaccc023@gmail.com" || SENDER_EMAIL,
+                // TODO use voucher store spcific email
+                user: "dummyaccc023@gmail.com",
                 clientId: CLIENT_ID,
                 clientSecret: CLIENT_SECRET,
                 refreshToken: REFRESH_TOKEN,
