@@ -7,6 +7,9 @@ export const getAllVouchers = async () => {
                 status: {
                     notIn: ["EXPIRED", "RESERVED"],
                 },
+                expiryDate: {
+                    gte: new Date(),
+                },
             },
             select: {
                 id: true,

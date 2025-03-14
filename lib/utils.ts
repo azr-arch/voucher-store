@@ -80,3 +80,23 @@ export const voucherData = [
         color: "from-teal-600 to-teal-800",
     },
 ];
+
+export const formatDate = (date: Date) => {
+    // Use toLocaleDateString for localization and custom options
+    return date.toLocaleDateString("en-US", {
+        weekday: "long", // Example: "Friday"
+        month: "long", // Example: "March"
+        day: "numeric", // Example: "14"
+        year: "numeric", // Example: "2025"
+    });
+};
+
+export const createObj = (items: string[]) => {
+    const obj: { [key: string]: string } = {};
+
+    for (let i = 0; i < items.length; i++) {
+        obj[i] = items[i] as string;
+    }
+
+    return obj;
+};
