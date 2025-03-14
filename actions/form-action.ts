@@ -3,39 +3,42 @@
 import { ActionState } from "@/components/modal/claim-modal";
 import { prismaDb } from "@/lib/db";
 import { sendVoucherEmail } from "@/lib/email";
+import { z } from "zod";
 
-const nameRegex = /^[a-zA-Z\s]{4,20}$/;
+const emailFormSchema = z.object({
+    name: z
+        .string()
+        .min(3, "Username should be more than 3 character")
+        .regex(/^[A-Za-z\s]+$/, {
+            message: "Invalid name",
+        }),
+    email: z.string().email("Invalid email"),
+    voucherId: z.string({ message: "voucher id is required" }),
+});
 
 export const formSubmit = async (state: ActionState, formData: FormData) => {
-    // Maybe use zod for validation
-
     const email = formData.get("email") as string;
     const name = formData.get("name") as string;
     const voucherid = formData.get("voucherid") as string;
     const checkbox = formData.get("checkbox");
 
-    // reimplement this
-    const validName = nameRegex.test("name");
-
-    if (!validName) {
-        return {
-            error: "Invalid name. Must be 4-20 alphabetic characters (including spaces)",
-            name,
-            email,
-        };
-    }
-
-    if (!email || !name || !voucherid) {
-        return {
-            error: "Please fill all the fields",
-            name,
-            email,
-        };
-    }
-
     if (!checkbox || checkbox === "off") {
         return {
             error: "Please accept above condition to move forward",
+            name,
+            email,
+        };
+    }
+
+    const validation = emailFormSchema.safeParse({
+        name,
+        email,
+        voucherId: voucherid,
+    });
+
+    if (!validation.success) {
+        return {
+            error: validation.error?.errors[0].message,
             name,
             email,
         };
