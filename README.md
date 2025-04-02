@@ -1,6 +1,6 @@
 ### Voucher store application
 
-full stack voucher store application where user can add voucher as admin and sell them
+redeemable voucher market place
 
 -- Add schema
 -- add auth
